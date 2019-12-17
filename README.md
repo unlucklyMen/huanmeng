@@ -5,7 +5,7 @@
 ## 目录结构描述
  
 ├── Readme.md                 //简介  
-├── word                      //相关文档  
+├── dos	                      //相关文档  
 ├── sql                       //sql文件  
 ├── Readme.md                 //简介  
 ├── .gitignore                //git忽略文件  
