@@ -17,7 +17,7 @@
 ## 功能简介
 
 打算做一个仿百度贴吧的项目，预计使用技术：  
-吧主后台使用开源项目[若伊](https://gitee.com/y_project/RuoYi)进行开发  
-管理员后台打算使用开源项目[若伊前后端分离版](https://gitee.com/y_project/RuoYi-Vue)进行开发  
+管理员后台使用开源项目[若伊](https://gitee.com/y_project/RuoYi)进行开发  
+吧主后台打算使用开源项目[若伊前后端分离版](https://gitee.com/y_project/RuoYi-Vue)进行开发  
 论坛本体后台打算基于spring-boot，spring-mvc,mybatis,shiro自己从零开始搭建框架进行开发  
 论坛本体前台打算使用vue进行开发  
