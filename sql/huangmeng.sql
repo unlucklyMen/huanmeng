@@ -11,7 +11,7 @@
  Target Server Version : 50727
  File Encoding         : 65001
 
- Date: 17/12/2019 15:50:32
+ Date: 25/12/2019 19:56:07
 */
 
 SET NAMES utf8mb4;
@@ -70,6 +70,180 @@ CREATE TABLE `gen_table_column`  (
   `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`column_id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '代码生成业务表字段' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for m_bar
+-- ----------------------------
+DROP TABLE IF EXISTS `m_bar`;
+CREATE TABLE `m_bar`  (
+  `bar_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `bar_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '吧名',
+  `bar_photo_little` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '吧略缩图',
+  `bar_photo_big` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '吧背景图',
+  `bar_message` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '吧简介',
+  `bar_user_id` int(11) NULL DEFAULT NULL COMMENT '吧主id',
+  `bar_jurisdiction` int(5) NULL DEFAULT NULL COMMENT '吧权限（1：所有人可进入可评论，2：仅全吧会员可评论，3：仅本吧会员可评论，4：仅全吧会员可进入，5：仅本吧会员可进入）',
+  `bar_type` int(11) NULL DEFAULT NULL COMMENT '广联类型表',
+  PRIMARY KEY (`bar_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '贴吧表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for m_bar_activity
+-- ----------------------------
+DROP TABLE IF EXISTS `m_bar_activity`;
+CREATE TABLE `m_bar_activity`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `bar_id` int(11) NULL DEFAULT NULL COMMENT '相关贴吧id',
+  `creat_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
+  `end_time` datetime(0) NULL DEFAULT NULL COMMENT '结束时间',
+  `activity_flag` int(5) NULL DEFAULT NULL COMMENT '活动状态（1：未开始，2：进行中，3：以结束）',
+  `activity_type` int(5) NULL DEFAULT NULL COMMENT '活动类型（1：撤销吧主投票，2：吧主选举投票）',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '吧主选举活动表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for m_bar_admin
+-- ----------------------------
+DROP TABLE IF EXISTS `m_bar_admin`;
+CREATE TABLE `m_bar_admin`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `user_id` int(11) NULL DEFAULT NULL COMMENT '小吧主用户id',
+  `bar_id` int(11) NULL DEFAULT NULL COMMENT '关联贴吧id',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '小吧主表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for m_bar_admin_apply
+-- ----------------------------
+DROP TABLE IF EXISTS `m_bar_admin_apply`;
+CREATE TABLE `m_bar_admin_apply`  (
+  `id` int(11) NOT NULL COMMENT '主键',
+  `user_id` int(11) NULL DEFAULT NULL COMMENT '申请人id',
+  `bar_id` int(11) NULL DEFAULT NULL COMMENT '贴吧id',
+  `message` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL COMMENT '个人简介',
+  `activity_id` int(11) NULL DEFAULT NULL COMMENT '广联活动id',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '吧主申请表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for m_bar_admin_vote
+-- ----------------------------
+DROP TABLE IF EXISTS `m_bar_admin_vote`;
+CREATE TABLE `m_bar_admin_vote`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `vote_user_id` int(11) NOT NULL COMMENT '投票人id',
+  `apply_user_id` int(11) NULL DEFAULT NULL COMMENT '候选人id',
+  `bar_id` int(11) NULL DEFAULT NULL COMMENT '贴吧id',
+  `activity_id` int(11) NULL DEFAULT NULL COMMENT '广联活动id',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '投票表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for m_bar_type
+-- ----------------------------
+DROP TABLE IF EXISTS `m_bar_type`;
+CREATE TABLE `m_bar_type`  (
+  `type_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `type_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '类型名称',
+  PRIMARY KEY (`type_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '贴吧类型表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for m_floor
+-- ----------------------------
+DROP TABLE IF EXISTS `m_floor`;
+CREATE TABLE `m_floor`  (
+  `floor_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `floor_user` int(11) NULL DEFAULT NULL COMMENT '楼层相关用户',
+  `floor_text` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL COMMENT '楼层内容',
+  `floor_post` int(11) NULL DEFAULT NULL COMMENT '楼层归属帖子表',
+  `creat_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
+  `floor_flag` int(5) NULL DEFAULT NULL COMMENT '楼层状态（1：正常，2：删除）',
+  PRIMARY KEY (`floor_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '楼层' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for m_post
+-- ----------------------------
+DROP TABLE IF EXISTS `m_post`;
+CREATE TABLE `m_post`  (
+  `post_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `post_user_is` int(11) NOT NULL COMMENT '发帖人id',
+  `post_span` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '帖子标题',
+  `post_text` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL COMMENT '正文',
+  `creat_time` datetime(0) NOT NULL COMMENT '创建时间',
+  `bar_id` int(11) NULL DEFAULT NULL COMMENT '归属贴吧id',
+  `post_jurisdiction` int(11) NULL DEFAULT NULL COMMENT '帖子权限（1：所有人可见可评论，2：仅全吧会员可评论，3：仅全吧会员可见，4：仅本吧会员可评论，5：仅本吧会员可见）',
+  PRIMARY KEY (`post_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '帖子表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for m_reply
+-- ----------------------------
+DROP TABLE IF EXISTS `m_reply`;
+CREATE TABLE `m_reply`  (
+  `reply_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `reply_user` int(11) NULL DEFAULT NULL COMMENT '回复相关用户',
+  `reply_text` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL COMMENT '回复内容',
+  `reply_floor` int(11) NULL DEFAULT NULL COMMENT '回复归属楼层id',
+  `creat_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
+  `reply_flag` int(5) NULL DEFAULT NULL COMMENT '回复状态（1：正常，2：删除）',
+  PRIMARY KEY (`reply_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '回复表（楼中楼）' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for m_text
+-- ----------------------------
+DROP TABLE IF EXISTS `m_text`;
+CREATE TABLE `m_text`  (
+  `text_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `text_span` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL COMMENT '题目',
+  `text_type` int(11) NULL DEFAULT NULL COMMENT '试题类型（关联试题类型表）',
+  `bar_id` int(11) NULL DEFAULT NULL COMMENT '试题归属吧（关联贴吧表，如果为0，为主吧）',
+  `text_true` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '正确答案',
+  PRIMARY KEY (`text_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '试题表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for m_text_choose
+-- ----------------------------
+DROP TABLE IF EXISTS `m_text_choose`;
+CREATE TABLE `m_text_choose`  (
+  `choose_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `choose_text` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL COMMENT '选项文本',
+  `text_id` int(11) NULL DEFAULT NULL COMMENT '关联试题表',
+  PRIMARY KEY (`choose_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '试题选项表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for m_text_type
+-- ----------------------------
+DROP TABLE IF EXISTS `m_text_type`;
+CREATE TABLE `m_text_type`  (
+  `type_id` int(11) NOT NULL COMMENT '主键',
+  `type_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '试题类型',
+  PRIMARY KEY (`type_id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '试题类型表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for m_user
+-- ----------------------------
+DROP TABLE IF EXISTS `m_user`;
+CREATE TABLE `m_user`  (
+  `user_id` int(11) NOT NULL COMMENT '主键',
+  `user_login` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '用户名',
+  `password` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '密码',
+  `salt` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '盐值',
+  `user_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '用户名',
+  `user_photo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '用户头像',
+  `user_sex` int(5) NULL DEFAULT NULL COMMENT '性别',
+  `creat_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
+  `user_phone` varchar(12) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '手机号',
+  `user_email` varchar(22) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '邮箱',
+  `user_index` int(5) NOT NULL COMMENT '用户个人中心状态（0：隐藏，1：显示）',
+  `user_banned` int(5) NULL DEFAULT NULL COMMENT '用户状态（1：正常，2：封禁，3：其他）',
+  PRIMARY KEY (`user_id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '用户表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for qrtz_blob_triggers
@@ -203,7 +377,7 @@ CREATE TABLE `qrtz_scheduler_state`  (
 -- ----------------------------
 -- Records of qrtz_scheduler_state
 -- ----------------------------
-INSERT INTO `qrtz_scheduler_state` VALUES ('RuoyiScheduler', 'DESKTOP-127B8UO1576564318212', 1576568268300, 15000);
+INSERT INTO `qrtz_scheduler_state` VALUES ('RuoyiScheduler', 'DESKTOP-127B8UO1576824448354', 1576833167242, 15000);
 
 -- ----------------------------
 -- Table structure for qrtz_simple_triggers
@@ -272,9 +446,9 @@ CREATE TABLE `qrtz_triggers`  (
 -- ----------------------------
 -- Records of qrtz_triggers
 -- ----------------------------
-INSERT INTO `qrtz_triggers` VALUES ('RuoyiScheduler', 'TASK_CLASS_NAME1', 'DEFAULT', 'TASK_CLASS_NAME1', 'DEFAULT', NULL, 1576564320000, -1, 5, 'PAUSED', 'CRON', 1576564318000, 0, NULL, 2, '');
-INSERT INTO `qrtz_triggers` VALUES ('RuoyiScheduler', 'TASK_CLASS_NAME2', 'DEFAULT', 'TASK_CLASS_NAME2', 'DEFAULT', NULL, 1576564320000, -1, 5, 'PAUSED', 'CRON', 1576564318000, 0, NULL, 2, '');
-INSERT INTO `qrtz_triggers` VALUES ('RuoyiScheduler', 'TASK_CLASS_NAME3', 'DEFAULT', 'TASK_CLASS_NAME3', 'DEFAULT', NULL, 1576564320000, -1, 5, 'PAUSED', 'CRON', 1576564318000, 0, NULL, 2, '');
+INSERT INTO `qrtz_triggers` VALUES ('RuoyiScheduler', 'TASK_CLASS_NAME1', 'DEFAULT', 'TASK_CLASS_NAME1', 'DEFAULT', NULL, 1576824450000, -1, 5, 'PAUSED', 'CRON', 1576824448000, 0, NULL, 2, '');
+INSERT INTO `qrtz_triggers` VALUES ('RuoyiScheduler', 'TASK_CLASS_NAME2', 'DEFAULT', 'TASK_CLASS_NAME2', 'DEFAULT', NULL, 1576824450000, -1, 5, 'PAUSED', 'CRON', 1576824448000, 0, NULL, 2, '');
+INSERT INTO `qrtz_triggers` VALUES ('RuoyiScheduler', 'TASK_CLASS_NAME3', 'DEFAULT', 'TASK_CLASS_NAME3', 'DEFAULT', NULL, 1576824460000, -1, 5, 'PAUSED', 'CRON', 1576824448000, 0, NULL, 2, '');
 
 -- ----------------------------
 -- Table structure for sys_config
@@ -482,7 +656,13 @@ CREATE TABLE `sys_logininfor`  (
   `msg` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '提示消息',
   `login_time` datetime(0) NULL DEFAULT NULL COMMENT '访问时间',
   PRIMARY KEY (`info_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '系统访问记录' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '系统访问记录' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of sys_logininfor
+-- ----------------------------
+INSERT INTO `sys_logininfor` VALUES (1, 'admin', '127.0.0.1', '内网IP', 'Chrome', 'Windows 10', '1', '验证码错误', '2019-12-20 14:47:51');
+INSERT INTO `sys_logininfor` VALUES (2, 'admin', '127.0.0.1', '内网IP', 'Chrome', 'Windows 10', '0', '登录成功', '2019-12-20 14:47:55');
 
 -- ----------------------------
 -- Table structure for sys_menu
@@ -839,7 +1019,7 @@ CREATE TABLE `sys_user`  (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES (1, 103, 'admin', '若依', '00', 'ry@163.com', '15888888888', '1', '', '29c67a30398638269fe600f73a054934', '111111', '0', '0', '127.0.0.1', '2018-03-16 11:33:00', 'admin', '2018-03-16 11:33:00', 'ry', '2018-03-16 11:33:00', '管理员');
+INSERT INTO `sys_user` VALUES (1, 103, 'admin', '若依', '00', 'ry@163.com', '15888888888', '1', '', '29c67a30398638269fe600f73a054934', '111111', '0', '0', '127.0.0.1', '2019-12-20 14:47:56', 'admin', '2018-03-16 11:33:00', 'ry', '2019-12-20 14:47:55', '管理员');
 INSERT INTO `sys_user` VALUES (2, 105, 'ry', '若依', '00', 'ry@qq.com', '15666666666', '1', '', '8e6d98b90472783cc73c17047ddccf36', '222222', '0', '0', '127.0.0.1', '2018-03-16 11:33:00', 'admin', '2018-03-16 11:33:00', 'ry', '2018-03-16 11:33:00', '测试员');
 
 -- ----------------------------
