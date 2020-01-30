@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ruoyi.post.mapper.MPostMapper">
+<mapper namespace="com.ruoyi.bar.mapper.MPostMapper">
     
     <resultMap type="MPost" id="MPostResult">
         <result property="postId"    column="post_id"    />
@@ -12,10 +12,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="creatTime"    column="creat_time"    />
         <result property="barId"    column="bar_id"    />
         <result property="postJurisdiction"    column="post_jurisdiction"    />
+        <result property="postFlag"    column="post_flag"    />
+        <result property="isRecommend"    column="is_recommend"    />
+        <result property="isImportanceBar"    column="is_importance_bar"    />
+        <result property="isImportanceAll"    column="is_importance_all"    />
     </resultMap>
 
     <sql id="selectMPostVo">
-        select post_id, post_user_is, post_span, post_text, creat_time, bar_id, post_jurisdiction from m_post
+        select post_id, post_user_is, post_span, post_text, creat_time, bar_id, post_jurisdiction, post_flag, is_recommend, is_importance_bar, is_importance_all from m_post
     </sql>
 
     <select id="selectMPostList" parameterType="MPost" resultMap="MPostResult">
@@ -27,6 +31,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="creatTime != null "> and creat_time = #{creatTime}</if>
             <if test="barId != null "> and bar_id = #{barId}</if>
             <if test="postJurisdiction != null "> and post_jurisdiction = #{postJurisdiction}</if>
+            <if test="postFlag != null "> and post_flag = #{postFlag}</if>
+            <if test="isRecommend != null "> and is_recommend = #{isRecommend}</if>
+            <if test="isImportanceBar != null "> and is_importance_bar = #{isImportanceBar}</if>
+            <if test="isImportanceAll != null "> and is_importance_all = #{isImportanceAll}</if>
         </where>
     </select>
     
@@ -44,6 +52,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="creatTime != null ">creat_time,</if>
             <if test="barId != null ">bar_id,</if>
             <if test="postJurisdiction != null ">post_jurisdiction,</if>
+            <if test="postFlag != null ">post_flag,</if>
+            <if test="isRecommend != null ">is_recommend,</if>
+            <if test="isImportanceBar != null ">is_importance_bar,</if>
+            <if test="isImportanceAll != null ">is_importance_all,</if>
          </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="postUserIs != null ">#{postUserIs},</if>
@@ -52,6 +64,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="creatTime != null ">#{creatTime},</if>
             <if test="barId != null ">#{barId},</if>
             <if test="postJurisdiction != null ">#{postJurisdiction},</if>
+            <if test="postFlag != null ">#{postFlag},</if>
+            <if test="isRecommend != null ">#{isRecommend},</if>
+            <if test="isImportanceBar != null ">#{isImportanceBar},</if>
+            <if test="isImportanceAll != null ">#{isImportanceAll},</if>
          </trim>
     </insert>
 
@@ -64,6 +80,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="creatTime != null ">creat_time = #{creatTime},</if>
             <if test="barId != null ">bar_id = #{barId},</if>
             <if test="postJurisdiction != null ">post_jurisdiction = #{postJurisdiction},</if>
+            <if test="postFlag != null ">post_flag = #{postFlag},</if>
+            <if test="isRecommend != null ">is_recommend = #{isRecommend},</if>
+            <if test="isImportanceBar != null ">is_importance_bar = #{isImportanceBar},</if>
+            <if test="isImportanceAll != null ">is_importance_all = #{isImportanceAll},</if>
         </trim>
         where post_id = #{postId}
     </update>

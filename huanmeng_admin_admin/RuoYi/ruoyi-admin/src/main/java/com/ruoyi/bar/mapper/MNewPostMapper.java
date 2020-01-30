@@ -1,15 +1,16 @@
-package com.ruoyi.post.mapper;
+package com.ruoyi.bar.mapper;
 
-import com.ruoyi.post.domain.MPost;
+import com.ruoyi.bar.domain.MPost;
+
 import java.util.List;
 
 /**
  * 帖子Mapper接口
  * 
  * @author ruoyi
- * @date 2020-01-23
+ * @date 2020-01-28
  */
-public interface MPostMapper 
+public interface MNewPostMapper
 {
     /**
      * 查询帖子

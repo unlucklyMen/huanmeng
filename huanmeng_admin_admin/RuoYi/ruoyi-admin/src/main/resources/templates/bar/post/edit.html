@@ -44,9 +44,31 @@
             <div class="form-group">    
                 <label class="col-sm-3 control-label">帖子权限：</label>
                 <div class="col-sm-8">
-                    <select name="postJurisdiction" class="form-control m-b" th:with="type=${@dict.getType('m_bar_jurisdiction')}">
-                        <option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}" th:field="*{postJurisdiction}"></option>
-                    </select>
+                    <input name="postJurisdiction" th:field="*{postJurisdiction}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">帖子状态：</label>
+                <div class="col-sm-8">
+                    <input name="postFlag" th:field="*{postFlag}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">是否推荐：</label>
+                <div class="col-sm-8">
+                    <input name="isRecommend" th:field="*{isRecommend}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">是否贴吧精华贴：</label>
+                <div class="col-sm-8">
+                    <input name="isImportanceBar" th:field="*{isImportanceBar}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">是否全吧精华贴：</label>
+                <div class="col-sm-8">
+                    <input name="isImportanceAll" th:field="*{isImportanceAll}" class="form-control" type="text">
                 </div>
             </div>
         </form>
@@ -54,7 +76,7 @@
     <th:block th:include="include :: footer" />
     <th:block th:include="include :: datetimepicker-js" />
     <script type="text/javascript">
-        var prefix = ctx + "post/post";
+        var prefix = ctx + "bar/post";
         $("#form-post-edit").validate({
             focusCleanup: true
         });

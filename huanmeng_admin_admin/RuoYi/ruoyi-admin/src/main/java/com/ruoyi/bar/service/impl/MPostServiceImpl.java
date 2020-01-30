@@ -1,18 +1,18 @@
-package com.ruoyi.post.service.impl;
+package com.ruoyi.bar.service.impl;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.ruoyi.post.mapper.MPostMapper;
-import com.ruoyi.post.domain.MPost;
-import com.ruoyi.post.service.IMPostService;
+import com.ruoyi.bar.mapper.MPostMapper;
+import com.ruoyi.bar.domain.MPost;
+import com.ruoyi.bar.service.IMPostService;
 import com.ruoyi.common.core.text.Convert;
 
 /**
  * 帖子Service业务层处理
  * 
  * @author ruoyi
- * @date 2020-01-23
+ * @date 2020-01-28
  */
 @Service
 public class MPostServiceImpl implements IMPostService 

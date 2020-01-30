@@ -34,10 +34,23 @@
                             </li>
                             <li>
                                 <p>帖子权限：</p>
-                                <select name="postJurisdiction" th:with="type=${@dict.getType('m_bar_jurisdiction')}">
-                                    <option value="">所有</option>
-                                    <option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}"></option>
-                                </select>
+                                <input type="text" name="postJurisdiction"/>
+                            </li>
+                            <li>
+                                <p>帖子状态：</p>
+                                <input type="text" name="postFlag"/>
+                            </li>
+                            <li>
+                                <p>是否推荐：</p>
+                                <input type="text" name="isRecommend"/>
+                            </li>
+                            <li>
+                                <p>是否贴吧精华贴：</p>
+                                <input type="text" name="isImportanceBar"/>
+                            </li>
+                            <li>
+                                <p>是否全吧精华贴：</p>
+                                <input type="text" name="isImportanceAll"/>
                             </li>
                             <li>
                                 <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>
@@ -49,16 +62,16 @@
             </div>
 
             <div class="btn-group-sm" id="toolbar" role="group">
-                <a class="btn btn-success" onclick="$.operate.add()" shiro:hasPermission="post:post:add">
+                <a class="btn btn-success" onclick="$.operate.add()" shiro:hasPermission="bar:post:add">
                     <i class="fa fa-plus"></i> 添加
                 </a>
-                <a class="btn btn-primary single disabled" onclick="$.operate.edit()" shiro:hasPermission="post:post:edit">
+                <a class="btn btn-primary single disabled" onclick="$.operate.edit()" shiro:hasPermission="bar:post:edit">
                     <i class="fa fa-edit"></i> 修改
                 </a>
-                <a class="btn btn-danger multiple disabled" onclick="$.operate.removeAll()" shiro:hasPermission="post:post:remove">
+                <a class="btn btn-danger multiple disabled" onclick="$.operate.removeAll()" shiro:hasPermission="bar:post:remove">
                     <i class="fa fa-remove"></i> 删除
                 </a>
-                <a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="post:post:export">
+                <a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="bar:post:export">
                     <i class="fa fa-download"></i> 导出
                  </a>
             </div>
@@ -69,10 +82,14 @@
     </div>
     <th:block th:include="include :: footer" />
     <script th:inline="javascript">
-        var editFlag = [[${@permission.hasPermi('post:post:edit')}]];
-        var removeFlag = [[${@permission.hasPermi('post:post:remove')}]];
-        var postJurisdictionDatas = [[${@dict.getType('m_bar_jurisdiction')}]];
-        var prefix = ctx + "post/post";
+        var editFlag = [[${@permission.hasPermi('bar:post:edit')}]];
+        var removeFlag = [[${@permission.hasPermi('bar:post:remove')}]];
+        var postJurisdictionDatas = [[${@dict.getType('m_jurisdiction')}]];
+        var postFlagDatas = [[${@dict.getType('m_flag')}]];
+        var isRecommendDatas = [[${@dict.getType('m_yes_no')}]];
+        var isImportanceBarDatas = [[${@dict.getType('m_yes_no')}]];
+        var isImportanceAllDatas = [[${@dict.getType('m_yes_no')}]];
+        var prefix = ctx + "bar/post";
 
         $(function() {
             var options = {
@@ -115,6 +132,34 @@
                     title : '帖子权限',
                     formatter: function(value, row, index) {
                        return $.table.selectDictLabel(postJurisdictionDatas, value);
+                    }
+                },
+                {
+                    field : 'postFlag', 
+                    title : '帖子状态',
+                    formatter: function(value, row, index) {
+                       return $.table.selectDictLabel(postFlagDatas, value);
+                    }
+                },
+                {
+                    field : 'isRecommend', 
+                    title : '是否推荐',
+                    formatter: function(value, row, index) {
+                       return $.table.selectDictLabel(isRecommendDatas, value);
+                    }
+                },
+                {
+                    field : 'isImportanceBar', 
+                    title : '是否贴吧精华贴',
+                    formatter: function(value, row, index) {
+                       return $.table.selectDictLabel(isImportanceBarDatas, value);
+                    }
+                },
+                {
+                    field : 'isImportanceAll', 
+                    title : '是否全吧精华贴',
+                    formatter: function(value, row, index) {
+                       return $.table.selectDictLabel(isImportanceAllDatas, value);
                     }
                 },
                 {

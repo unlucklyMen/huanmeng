@@ -1,13 +1,13 @@
-package com.ruoyi.post.service;
+package com.ruoyi.bar.service;
 
-import com.ruoyi.post.domain.MPost;
+import com.ruoyi.bar.domain.MPost;
 import java.util.List;
 
 /**
  * 帖子Service接口
  * 
  * @author ruoyi
- * @date 2020-01-23
+ * @date 2020-01-28
  */
 public interface IMPostService 
 {
@@ -58,11 +58,4 @@ public interface IMPostService
      * @return 结果
      */
     public int deleteMPostById(Long postId);
-
-    /**
-     * 查询输入月份的新帖子数量
-     * @param month 月份
-     * @return 新帖子数量
-     */
-    public int selectPostNumByMonth(Integer month);
 }
