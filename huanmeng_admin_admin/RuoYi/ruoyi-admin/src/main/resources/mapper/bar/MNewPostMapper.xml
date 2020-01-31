@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.bar.mapper.MNewPostMapper">
+    
+    <resultMap type="MPost" id="MPostResult">
+        <result property="postId"    column="post_id"    />
+        <result property="postUserIs"    column="post_user_is"    />
+        <result property="postSpan"    column="post_span"    />
+        <result property="postText"    column="post_text"    />
+        <result property="creatTime"    column="creat_time"    />
+        <result property="barId"    column="bar_id"    />
+        <result property="postJurisdiction"    column="post_jurisdiction"    />
+        <result property="postFlag"    column="post_flag"    />
+        <result property="isRecommend"    column="is_recommend"    />
+        <result property="isImportanceBar"    column="is_importance_bar"    />
+        <result property="isImportanceAll"    column="is_importance_all"    />
+    </resultMap>
+
+    <select id="getMonthAllPostNum" parameterType="Integer" resultType="Integer">
+        select count(*)
+        from m_post
+        where MONTH(creat_time) = #{month} and Year(creat_time) = #{year}
+    </select>
+
+    <select id="getMonthByDayForList" parameterType="Integer" resultType="HashMap">
+        select day(creat_time) day,count(*) num
+        from m_post
+        where month(creat_time) = #{month} and year(creat_time) = #{year}
+        group by day
+    </select>
+    
+</mapper>

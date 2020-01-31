@@ -1,8 +1,9 @@
 package com.ruoyi.bar.mapper;
 
-import com.ruoyi.bar.domain.MPost;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 帖子Mapper接口
@@ -13,50 +14,17 @@ import java.util.List;
 public interface MNewPostMapper
 {
     /**
-     * 查询帖子
-     * 
-     * @param postId 帖子ID
-     * @return 帖子
+     * 获取输入月份的新帖子总数
+     * @param month
+     * @return
      */
-    public MPost selectMPostById(Long postId);
+    public Integer getMonthAllPostNum(@Param("month")Integer month, @Param("year")Integer year);
 
     /**
-     * 查询帖子列表
-     * 
-     * @param mPost 帖子
-     * @return 帖子集合
+     * 获取当月每天的新贴数
+     * @param month
+     * @param year
+     * @return
      */
-    public List<MPost> selectMPostList(MPost mPost);
-
-    /**
-     * 新增帖子
-     * 
-     * @param mPost 帖子
-     * @return 结果
-     */
-    public int insertMPost(MPost mPost);
-
-    /**
-     * 修改帖子
-     * 
-     * @param mPost 帖子
-     * @return 结果
-     */
-    public int updateMPost(MPost mPost);
-
-    /**
-     * 删除帖子
-     * 
-     * @param postId 帖子ID
-     * @return 结果
-     */
-    public int deleteMPostById(Long postId);
-
-    /**
-     * 批量删除帖子
-     * 
-     * @param postIds 需要删除的数据ID
-     * @return 结果
-     */
-    public int deleteMPostByIds(String[] postIds);
+    public List<Map> getMonthByDayForList(@Param("month")Integer month, @Param("year")Integer year);
 }

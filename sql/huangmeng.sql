@@ -11,7 +11,7 @@
  Target Server Version : 50727
  File Encoding         : 65001
 
- Date: 30/01/2020 13:56:04
+ Date: 31/01/2020 21:15:27
 */
 
 SET NAMES utf8mb4;
@@ -39,12 +39,13 @@ CREATE TABLE `gen_table`  (
   `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`table_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '代码生成业务表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '代码生成业务表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of gen_table
 -- ----------------------------
 INSERT INTO `gen_table` VALUES (6, 'm_post', '帖子表', 'MPost', 'crud', 'com.ruoyi.bar', 'bar', 'post', '帖子', 'ruoyi', '{\"treeName\":\"\",\"treeParentCode\":\"\",\"treeCode\":\"\"}', 'admin', '2020-01-28 10:37:56', '', '2020-01-28 18:36:16', '');
+INSERT INTO `gen_table` VALUES (7, 'm_floor', '楼层', 'MFloor', 'crud', 'com.ruoyi.system', 'system', 'floor', '楼层', 'ruoyi', NULL, 'admin', '2020-01-31 21:06:59', '', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for gen_table_column
@@ -74,7 +75,7 @@ CREATE TABLE `gen_table_column`  (
   `update_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '更新者',
   `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`column_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 53 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '代码生成业务表字段' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 62 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '代码生成业务表字段' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of gen_table_column
@@ -90,6 +91,15 @@ INSERT INTO `gen_table_column` VALUES (49, '6', 'post_flag', '帖子状态（1�
 INSERT INTO `gen_table_column` VALUES (50, '6', 'is_recommend', '是否推荐（1：是，2：否）', 'int(5)', 'Integer', 'isRecommend', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', 'm_yes_no', 9, 'admin', '2020-01-28 10:37:56', NULL, '2020-01-28 18:36:16');
 INSERT INTO `gen_table_column` VALUES (51, '6', 'is_importance_bar', '是否贴吧精华贴（1：是，2：否）', 'int(5)', 'Integer', 'isImportanceBar', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', 'm_yes_no', 10, 'admin', '2020-01-28 10:37:56', NULL, '2020-01-28 18:36:16');
 INSERT INTO `gen_table_column` VALUES (52, '6', 'is_importance_all', '是否全吧精华贴（1：是，2：否）', 'int(5)', 'Integer', 'isImportanceAll', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', 'm_yes_no', 11, 'admin', '2020-01-28 10:37:56', NULL, '2020-01-28 18:36:16');
+INSERT INTO `gen_table_column` VALUES (53, '7', 'floor_id', '主键', 'int(11)', 'Long', 'floorId', '1', '1', NULL, '1', NULL, NULL, NULL, 'EQ', 'input', '', 1, 'admin', '2020-01-31 21:06:59', '', NULL);
+INSERT INTO `gen_table_column` VALUES (54, '7', 'floor_user', '楼层相关用户', 'int(11)', 'Long', 'floorUser', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 2, 'admin', '2020-01-31 21:06:59', '', NULL);
+INSERT INTO `gen_table_column` VALUES (55, '7', 'floor_text', '楼层内容', 'text', 'String', 'floorText', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 3, 'admin', '2020-01-31 21:06:59', '', NULL);
+INSERT INTO `gen_table_column` VALUES (56, '7', 'floor_post', '楼层归属帖子表', 'int(11)', 'Long', 'floorPost', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 4, 'admin', '2020-01-31 21:06:59', '', NULL);
+INSERT INTO `gen_table_column` VALUES (57, '7', 'creat_time', '创建时间', 'datetime', 'Date', 'creatTime', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'datetime', '', 5, 'admin', '2020-01-31 21:06:59', '', NULL);
+INSERT INTO `gen_table_column` VALUES (58, '7', 'floor_flag', '楼层状态（1：正常，2：删除）', 'int(5)', 'Integer', 'floorFlag', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 6, 'admin', '2020-01-31 21:06:59', '', NULL);
+INSERT INTO `gen_table_column` VALUES (59, '7', 'floor_floor_user_id', '楼中楼回复的用户id', 'int(11)', 'Long', 'floorFloorUserId', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 7, 'admin', '2020-01-31 21:06:59', '', NULL);
+INSERT INTO `gen_table_column` VALUES (60, '7', 'floor_floor_id', '楼中楼关联楼层id', 'int(11)', 'Long', 'floorFloorId', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 8, 'admin', '2020-01-31 21:06:59', '', NULL);
+INSERT INTO `gen_table_column` VALUES (61, '7', 'floor_index', '楼层状态（1：普通楼层，2：楼中楼）', 'int(5)', 'Integer', 'floorIndex', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 9, 'admin', '2020-01-31 21:06:59', '', NULL);
 
 -- ----------------------------
 -- Table structure for m_bar
@@ -181,6 +191,9 @@ CREATE TABLE `m_floor`  (
   `floor_post` int(11) NULL DEFAULT NULL COMMENT '楼层归属帖子表',
   `creat_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
   `floor_flag` int(5) NULL DEFAULT NULL COMMENT '楼层状态（1：正常，2：删除）',
+  `floor_floor_user_id` int(11) NULL DEFAULT NULL COMMENT '楼中楼回复的用户id',
+  `floor_floor_id` int(11) NULL DEFAULT NULL COMMENT '楼中楼关联楼层id',
+  `floor_index` int(5) NULL DEFAULT NULL COMMENT '楼层状态（1：普通楼层，2：楼中楼）',
   PRIMARY KEY (`floor_id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '楼层' ROW_FORMAT = Dynamic;
 
@@ -201,26 +214,13 @@ CREATE TABLE `m_post`  (
   `is_importance_bar` int(5) NULL DEFAULT NULL COMMENT '是否贴吧精华贴（1：是，2：否）',
   `is_importance_all` int(5) NULL DEFAULT NULL COMMENT '是否全吧精华贴（1：是，2：否）',
   PRIMARY KEY (`post_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '帖子表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '帖子表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of m_post
 -- ----------------------------
 INSERT INTO `m_post` VALUES (1, 1, '12', '12', '2020-01-23 00:00:00', 1, 1, 1, 1, 2, 1);
-
--- ----------------------------
--- Table structure for m_reply
--- ----------------------------
-DROP TABLE IF EXISTS `m_reply`;
-CREATE TABLE `m_reply`  (
-  `reply_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `reply_user` int(11) NULL DEFAULT NULL COMMENT '回复相关用户',
-  `reply_text` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL COMMENT '回复内容',
-  `reply_floor` int(11) NULL DEFAULT NULL COMMENT '回复归属楼层id',
-  `creat_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
-  `reply_flag` int(5) NULL DEFAULT NULL COMMENT '回复状态（1：正常，2：删除）',
-  PRIMARY KEY (`reply_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '回复表（楼中楼）' ROW_FORMAT = Dynamic;
+INSERT INTO `m_post` VALUES (2, 2, '4512', '846512', '2019-12-19 14:57:00', 2, 2, 2, 1, 2, 1);
 
 -- ----------------------------
 -- Table structure for m_text
@@ -408,7 +408,7 @@ CREATE TABLE `qrtz_scheduler_state`  (
 -- ----------------------------
 -- Records of qrtz_scheduler_state
 -- ----------------------------
-INSERT INTO `qrtz_scheduler_state` VALUES ('RuoyiScheduler', 'DESKTOP-127B8UO1580363037588', 1580363760014, 15000);
+INSERT INTO `qrtz_scheduler_state` VALUES ('RuoyiScheduler', 'DESKTOP-127B8UO1580476475425', 1580476507651, 15000);
 
 -- ----------------------------
 -- Table structure for qrtz_simple_triggers
@@ -477,9 +477,9 @@ CREATE TABLE `qrtz_triggers`  (
 -- ----------------------------
 -- Records of qrtz_triggers
 -- ----------------------------
-INSERT INTO `qrtz_triggers` VALUES ('RuoyiScheduler', 'TASK_CLASS_NAME1', 'DEFAULT', 'TASK_CLASS_NAME1', 'DEFAULT', NULL, 1580363040000, -1, 5, 'PAUSED', 'CRON', 1580363037000, 0, NULL, 2, '');
-INSERT INTO `qrtz_triggers` VALUES ('RuoyiScheduler', 'TASK_CLASS_NAME2', 'DEFAULT', 'TASK_CLASS_NAME2', 'DEFAULT', NULL, 1580363040000, -1, 5, 'PAUSED', 'CRON', 1580363037000, 0, NULL, 2, '');
-INSERT INTO `qrtz_triggers` VALUES ('RuoyiScheduler', 'TASK_CLASS_NAME3', 'DEFAULT', 'TASK_CLASS_NAME3', 'DEFAULT', NULL, 1580363040000, -1, 5, 'PAUSED', 'CRON', 1580363037000, 0, NULL, 2, '');
+INSERT INTO `qrtz_triggers` VALUES ('RuoyiScheduler', 'TASK_CLASS_NAME1', 'DEFAULT', 'TASK_CLASS_NAME1', 'DEFAULT', NULL, 1580476480000, -1, 5, 'PAUSED', 'CRON', 1580476475000, 0, NULL, 2, '');
+INSERT INTO `qrtz_triggers` VALUES ('RuoyiScheduler', 'TASK_CLASS_NAME2', 'DEFAULT', 'TASK_CLASS_NAME2', 'DEFAULT', NULL, 1580476485000, -1, 5, 'PAUSED', 'CRON', 1580476475000, 0, NULL, 2, '');
+INSERT INTO `qrtz_triggers` VALUES ('RuoyiScheduler', 'TASK_CLASS_NAME3', 'DEFAULT', 'TASK_CLASS_NAME3', 'DEFAULT', NULL, 1580476480000, -1, 5, 'PAUSED', 'CRON', 1580476475000, 0, NULL, 2, '');
 
 -- ----------------------------
 -- Table structure for sys_config
@@ -699,7 +699,7 @@ CREATE TABLE `sys_logininfor`  (
   `msg` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '提示消息',
   `login_time` datetime(0) NULL DEFAULT NULL COMMENT '访问时间',
   PRIMARY KEY (`info_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 31 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '系统访问记录' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 46 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '系统访问记录' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_logininfor
@@ -734,6 +734,21 @@ INSERT INTO `sys_logininfor` VALUES (27, 'admin', '127.0.0.1', '内网IP', 'Chro
 INSERT INTO `sys_logininfor` VALUES (28, 'admin', '127.0.0.1', '内网IP', 'Chrome', 'Windows 10', '0', '登录成功', '2020-01-28 19:21:02');
 INSERT INTO `sys_logininfor` VALUES (29, 'admin', '127.0.0.1', '内网IP', 'Chrome', 'Windows 10', '1', '验证码错误', '2020-01-30 13:45:31');
 INSERT INTO `sys_logininfor` VALUES (30, 'admin', '127.0.0.1', '内网IP', 'Chrome', 'Windows 10', '0', '登录成功', '2020-01-30 13:45:35');
+INSERT INTO `sys_logininfor` VALUES (31, 'admin', '127.0.0.1', '内网IP', 'Chrome', 'Windows 10', '1', '验证码错误', '2020-01-30 14:31:16');
+INSERT INTO `sys_logininfor` VALUES (32, 'admin', '127.0.0.1', '内网IP', 'Chrome', 'Windows 10', '1', '验证码错误', '2020-01-30 14:31:19');
+INSERT INTO `sys_logininfor` VALUES (33, 'admin', '127.0.0.1', '内网IP', 'Chrome', 'Windows 10', '0', '登录成功', '2020-01-30 14:31:21');
+INSERT INTO `sys_logininfor` VALUES (34, 'admin', '127.0.0.1', '内网IP', 'Chrome', 'Windows 10', '0', '登录成功', '2020-01-30 14:33:37');
+INSERT INTO `sys_logininfor` VALUES (35, 'admin', '127.0.0.1', '内网IP', 'Chrome', 'Windows 10', '0', '退出成功', '2020-01-30 14:37:38');
+INSERT INTO `sys_logininfor` VALUES (36, 'ry', '127.0.0.1', '内网IP', 'Chrome', 'Windows 10', '0', '登录成功', '2020-01-30 14:37:41');
+INSERT INTO `sys_logininfor` VALUES (37, 'ry', '127.0.0.1', '内网IP', 'Chrome', 'Windows 10', '0', '登录成功', '2020-01-30 14:42:00');
+INSERT INTO `sys_logininfor` VALUES (38, 'admin', '127.0.0.1', '内网IP', 'Chrome', 'Windows 10', '1', '验证码错误', '2020-01-30 14:57:57');
+INSERT INTO `sys_logininfor` VALUES (39, 'admin', '127.0.0.1', '内网IP', 'Chrome', 'Windows 10', '0', '登录成功', '2020-01-30 14:57:59');
+INSERT INTO `sys_logininfor` VALUES (40, 'admin', '127.0.0.1', '内网IP', 'Chrome', 'Windows 10', '0', '登录成功', '2020-01-30 14:58:40');
+INSERT INTO `sys_logininfor` VALUES (41, 'ry', '127.0.0.1', '内网IP', 'Chrome', 'Windows 10', '0', '登录成功', '2020-01-30 14:59:26');
+INSERT INTO `sys_logininfor` VALUES (42, 'ry', '127.0.0.1', '内网IP', 'Chrome', 'Windows 10', '0', '登录成功', '2020-01-31 17:56:00');
+INSERT INTO `sys_logininfor` VALUES (43, 'ry', '127.0.0.1', '内网IP', 'Chrome', 'Windows 10', '0', '登录成功', '2020-01-31 18:57:17');
+INSERT INTO `sys_logininfor` VALUES (44, 'ry', '127.0.0.1', '内网IP', 'Chrome', 'Windows 10', '0', '登录成功', '2020-01-31 19:14:32');
+INSERT INTO `sys_logininfor` VALUES (45, 'admin', '127.0.0.1', '内网IP', 'Chrome', 'Windows 10', '0', '登录成功', '2020-01-31 21:06:33');
 
 -- ----------------------------
 -- Table structure for sys_menu
@@ -898,7 +913,7 @@ CREATE TABLE `sys_oper_log`  (
   `error_msg` varchar(2000) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '错误消息',
   `oper_time` datetime(0) NULL DEFAULT NULL COMMENT '操作时间',
   PRIMARY KEY (`oper_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 64 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '操作日志记录' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 66 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '操作日志记录' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_oper_log
@@ -966,6 +981,8 @@ INSERT INTO `sys_oper_log` VALUES (60, '代码生成', 2, 'com.ruoyi.generator.c
 INSERT INTO `sys_oper_log` VALUES (61, '代码生成', 8, 'com.ruoyi.generator.controller.GenController.genCode()', 'GET', 1, 'admin', '研发部门', '/tool/gen/genCode/m_post', '127.0.0.1', '内网IP', '{ }', 'null', 0, NULL, '2020-01-28 18:36:27');
 INSERT INTO `sys_oper_log` VALUES (62, '帖子', 2, 'com.ruoyi.bar.controller.MPostController.editSave()', 'POST', 1, 'admin', '研发部门', '/bar/post/edit', '127.0.0.1', '内网IP', '{\r\n  \"postId\" : [ \"1\" ],\r\n  \"postUserIs\" : [ \"1\" ],\r\n  \"postSpan\" : [ \"12\" ],\r\n  \"postText\" : [ \"12\" ],\r\n  \"creatTime\" : [ \"2020-01-23\" ],\r\n  \"barId\" : [ \"1\" ],\r\n  \"postJurisdiction\" : [ \"1\" ],\r\n  \"postFlag\" : [ \"1\" ],\r\n  \"isRecommend\" : [ \"1\" ],\r\n  \"isImportanceBar\" : [ \"2\" ],\r\n  \"isImportanceAll\" : [ \"1\" ]\r\n}', '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', 0, NULL, '2020-01-28 19:21:15');
 INSERT INTO `sys_oper_log` VALUES (63, '菜单管理', 2, 'com.ruoyi.web.controller.system.SysMenuController.editSave()', 'POST', 1, 'admin', '研发部门', '/system/menu/edit', '127.0.0.1', '内网IP', '{\r\n  \"menuId\" : [ \"1069\" ],\r\n  \"parentId\" : [ \"1062\" ],\r\n  \"menuType\" : [ \"C\" ],\r\n  \"menuName\" : [ \"帖子\" ],\r\n  \"url\" : [ \"/bar/post\" ],\r\n  \"target\" : [ \"menuItem\" ],\r\n  \"perms\" : [ \"bar:post:view\" ],\r\n  \"orderNum\" : [ \"1\" ],\r\n  \"icon\" : [ \"#\" ],\r\n  \"visible\" : [ \"0\" ]\r\n}', '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', 0, NULL, '2020-01-30 13:45:56');
+INSERT INTO `sys_oper_log` VALUES (64, '代码生成', 6, 'com.ruoyi.generator.controller.GenController.importTableSave()', 'POST', 1, 'admin', '研发部门', '/tool/gen/importTable', '127.0.0.1', '内网IP', '{\r\n  \"tables\" : [ \"m_floor\" ]\r\n}', '{\r\n  \"msg\" : \"操作成功\",\r\n  \"code\" : 0\r\n}', 0, NULL, '2020-01-31 21:06:59');
+INSERT INTO `sys_oper_log` VALUES (65, '代码生成', 8, 'com.ruoyi.generator.controller.GenController.genCode()', 'GET', 1, 'admin', '研发部门', '/tool/gen/genCode/m_floor', '127.0.0.1', '内网IP', '{ }', 'null', 0, NULL, '2020-01-31 21:07:10');
 
 -- ----------------------------
 -- Table structure for sys_post
@@ -1164,8 +1181,8 @@ CREATE TABLE `sys_user`  (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES (1, 103, 'admin', '若依', '00', 'ry@163.com', '15888888888', '1', '', '29c67a30398638269fe600f73a054934', '111111', '0', '0', '127.0.0.1', '2020-01-30 13:45:36', 'admin', '2018-03-16 11:33:00', 'ry', '2020-01-30 13:45:36', '管理员');
-INSERT INTO `sys_user` VALUES (2, 105, 'ry', '若依', '00', 'ry@qq.com', '15666666666', '1', '', '8e6d98b90472783cc73c17047ddccf36', '222222', '0', '0', '127.0.0.1', '2020-01-26 09:53:19', 'admin', '2018-03-16 11:33:00', 'ry', '2020-01-26 09:53:19', '测试员');
+INSERT INTO `sys_user` VALUES (1, 103, 'admin', '若依', '00', 'ry@163.com', '15888888888', '1', '', '29c67a30398638269fe600f73a054934', '111111', '0', '0', '127.0.0.1', '2020-01-31 21:06:33', 'admin', '2018-03-16 11:33:00', 'ry', '2020-01-31 21:06:33', '管理员');
+INSERT INTO `sys_user` VALUES (2, 105, 'ry', '若依', '00', 'ry@qq.com', '15666666666', '1', '', '8e6d98b90472783cc73c17047ddccf36', '222222', '0', '0', '127.0.0.1', '2020-01-31 19:14:33', 'admin', '2018-03-16 11:33:00', 'ry', '2020-01-31 19:14:32', '测试员');
 
 -- ----------------------------
 -- Table structure for sys_user_online
@@ -1189,7 +1206,7 @@ CREATE TABLE `sys_user_online`  (
 -- ----------------------------
 -- Records of sys_user_online
 -- ----------------------------
-INSERT INTO `sys_user_online` VALUES ('199cedb5-ee63-471e-873f-0cafc1e31895', 'admin', '研发部门', '127.0.0.1', '内网IP', 'Chrome', 'Windows 10', 'on_line', '2020-01-30 13:45:22', '2020-01-30 13:45:36', 1800000);
+INSERT INTO `sys_user_online` VALUES ('5e384712-0a07-41d5-924a-0c3e99bf2a20', 'admin', '研发部门', '127.0.0.1', '内网IP', 'Chrome', 'Windows 10', 'on_line', '2020-01-31 21:06:27', '2020-01-31 21:06:33', 1800000);
 
 -- ----------------------------
 -- Table structure for sys_user_post

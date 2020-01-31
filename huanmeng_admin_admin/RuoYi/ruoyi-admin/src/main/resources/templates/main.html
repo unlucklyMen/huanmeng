@@ -90,6 +90,41 @@
     $(function () {
         var postNumList = /*[[${postNumList}]]*/ [];
         var userNumList = /*[[${userNumList}]]*/ [];
+        console.log(postNumList);
+        console.log(userNumList);
+        var date = new Date();
+        var postNumflag = [];
+        var userNumflag = [];
+        //对后台传过来的数据进行处理
+        for(var i = 0;i<date.getDate();i++){
+            //处理每日帖子数数据
+            var postNumisNull = true;
+            for(var j = 0;j<postNumList.length;j++){
+                if(postNumList[j].day-1 == i){
+                    postNumflag[i] = postNumList[j].num;
+                    postNumisNull = false;
+                    break;
+                }
+            }
+            if(postNumisNull){
+                postNumflag[i] = 0;
+            }
+
+            //处理每日活跃用户数据
+            var userNumisNull = true;
+            for(var j = 0;j<userNumList.length;j++){
+                if(userNumList[j].day-1 == i){
+                    userNumflag[i] = userNumList[j].num;
+                    userNumisNull = false;
+                    break;
+                }
+            }
+            if(userNumisNull){
+                userNumflag[i] = 0;
+            }
+        }
+        postNumList = postNumflag;
+        userNumList = userNumflag;
         console.log("postNumList"+postNumList);
         console.log("userNumList"+userNumList);
         var lineChart = echarts.init(document.getElementById("echarts-line-chart"));
