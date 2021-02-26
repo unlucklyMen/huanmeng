@@ -1,151 +1,162 @@
 <template>
   <v-container>
+    <indexHead :pageName="pageName"/>
     <v-row class="text-center">
-      <v-col cols="12">
-        <v-img
-          :src="require('../assets/logo.svg')"
-          class="my-3"
-          contain
-          height="200"
-        />
-      </v-col>
+      <v-col cols="12" md="10" lg="10" style="margin: 0 auto;" class="d-flex">
+        <v-col class=""  cols="12" sm="12" md="9" lg="8">
+          <v-btn class="mx-2" style="bottom: 122px;right: 45px;" fixed dark fab color="cyan" to="/topicCreat">
+            <v-icon dark>mdi-pencil</v-icon>
+          </v-btn>
+          <v-col app cols="12">
+            <v-tabs show-arrows style="border-bottom: 1px solid #eaeaea;">
+              <v-tab>全部</v-tab>
+              <v-tab>精华</v-tab>
+              <v-tab>最热</v-tab>
+              <v-tab>最新</v-tab>
+              <v-tab>无人问津</v-tab>
+            </v-tabs>
+            <v-banner class="d-flex d-md-none" single-line v-if="downloadDivShow" @click:icon="downloadDivShow = false" >
+              <v-icon slot="icon" size="20">mdi-close</v-icon>
+              下载客户端获得更好的体验
+              <template v-slot:actions>
+                <v-btn color="primary" text :href="downloadUrl">
+                  下载
+                </v-btn>
+              </template>
+            </v-banner>
+          </v-col>
 
-      <v-col class="mb-4">
-        <h1 class="display-2 font-weight-bold mb-3">
-          Welcome to Vuetify
-        </h1>
+          <v-col app cols="12">
+            <v-col cols="12">
+            <v-card  hover to="/topicIndex">
+                <v-list-item-content>
+                  <v-card-title class="d-inline-block  text-truncate col-12 text-left">朱红悬崖国家纪念碑</v-card-title>
+                </v-list-item-content>
+                <v-col cols="12" class="d-flex flex-row mb-6">
+                  <v-col class="pa-2" cols="4" ><v-img src="https://tse1-mm.cn.bing.net/th?id=OIP.-dvzvaP0phZ2Ar7M8KvuIwHaE7&w=247&h=160&c=8&rs=1&o=5&pid=3.1&rm=2" height="100" width="100"></v-img></v-col>
+                  <v-col class="pa-2" cols="4" ><v-img src="https://tse1-mm.cn.bing.net/th?id=OIP.OrzOyJceDftKLZsrCaa8YwAAAA&w=128&h=160&c=8&rs=1&o=5&pid=3.1&rm=2" height="100" width="100"></v-img></v-col>
+                  <v-col class="pa-2" cols="4" ><v-img src="https://tse1-mm.cn.bing.net/th?id=OIP.PCN7PIz3QUc9GHzvJ_U1NwHaE7&w=248&h=160&c=8&rs=1&o=5&pid=3.1&rm=2" height="100" width="100"></v-img></v-col>
+                </v-col>
+                <v-card-actions>
+                  <v-breadcrumbs :items="items" divider="-"></v-breadcrumbs>
+                </v-card-actions>
+              </v-card>
+            </v-col>
+          </v-col>
+        </v-col>
+        <v-col cols="4" xl="3" v-if="windowWidth>2">
+          <v-card>
+            <v-col cols="12" class="d-flex flex-row align-self-center">
+              <v-avatar color="teal" size="62">
+                <img src="https://sf3-ttcdn-tos.pstatp.com/img/pgc-image/03f6307ae99745119fa95747f9d9e525~300x300.image" alt="昵称">
+              </v-avatar>
+              <div class="text-h5 text-center" style="padding: 15px;">昵称</div>
+            </v-col>
+            <v-divider></v-divider>
+            <v-col cols="12" class="d-flex flex-row justify-space-around">
+              <div class="text-center">积分:225</div>
+              <div class="text-center">未读消息:0</div>
+            </v-col>
+          </v-card>
 
-        <p class="subheading font-weight-regular">
-          For help and collaboration with other Vuetify developers,
-          <br>please join our online
-          <a
-            href="https://community.vuetifyjs.com"
-            target="_blank"
-          >Discord Community</a>
-        </p>
-      </v-col>
-
-      <v-col
-        class="mb-5"
-        cols="12"
-      >
-        <h2 class="headline font-weight-bold mb-3">
-          What's next?
-        </h2>
-
-        <v-row justify="center">
-          <a
-            v-for="(next, i) in whatsNext"
-            :key="i"
-            :href="next.href"
-            class="subheading mx-3"
-            target="_blank"
-          >
-            {{ next.text }}
-          </a>
-        </v-row>
-      </v-col>
-
-      <v-col
-        class="mb-5"
-        cols="12"
-      >
-        <h2 class="headline font-weight-bold mb-3">
-          Important Links
-        </h2>
-
-        <v-row justify="center">
-          <a
-            v-for="(link, i) in importantLinks"
-            :key="i"
-            :href="link.href"
-            class="subheading mx-3"
-            target="_blank"
-          >
-            {{ link.text }}
-          </a>
-        </v-row>
-      </v-col>
-
-      <v-col
-        class="mb-5"
-        cols="12"
-      >
-        <h2 class="headline font-weight-bold mb-3">
-          Ecosystem
-        </h2>
-
-        <v-row justify="center">
-          <a
-            v-for="(eco, i) in ecosystem"
-            :key="i"
-            :href="eco.href"
-            class="subheading mx-3"
-            target="_blank"
-          >
-            {{ eco.text }}
-          </a>
-        </v-row>
+          <v-card style="margin-top: 20px;">
+            <v-col cols="12" style="background: #eaeaea" class="d-flex flex-row justify-space-around">
+              <div class="text-center">积分榜</div>
+            </v-col>
+            <v-divider></v-divider>
+            <v-col cols="12" class="d-flex flex-row justify-space-around">
+              <div class="text-center">昵称10058</div>
+              <div class="text-center">5452</div>
+            </v-col>
+            <v-col cols="12" class="d-flex flex-row justify-space-around">
+              <div class="text-center">昵称10058</div>
+              <div class="text-center">5584</div>
+            </v-col>
+            <v-col cols="12" class="d-flex flex-row justify-space-around">
+              <div class="text-center">昵称10058</div>
+              <div class="text-center">5552</div>
+            </v-col>
+            <v-col cols="12" class="d-flex flex-row justify-space-around">
+              <div class="text-center">昵称10058</div>
+              <div class="text-center">5452</div>
+            </v-col>
+            <v-col cols="12" class="d-flex flex-row justify-space-around">
+              <div class="text-center">昵称10058</div>
+              <div class="text-center">5552</div>
+            </v-col>
+          </v-card>
+        </v-col>
       </v-col>
     </v-row>
+    <mobileBottom :choose-num="pageName"/>
   </v-container>
 </template>
 
 <script>
+import mobileBottom from '@/components/comment/mobileBottom';
+import indexHead from '@/components/comment/indexHead';
 export default {
   name: 'HelloWorld',
-
+  components: {
+    mobileBottom,
+    indexHead
+  },
   data: () => ({
-    ecosystem: [
+    pageName: 0,
+    items: [
       {
-        text: 'vuetify-loader',
-        href: 'https://github.com/vuetifyjs/vuetify-loader'
+        text: '精华',
+        disabled: true,
+        href: 'breadcrumbs_dashboard'
       },
       {
-        text: 'github',
-        href: 'https://github.com/vuetifyjs/vuetify'
+        text: '置顶',
+        disabled: true,
+        href: 'breadcrumbs_link_1'
       },
       {
-        text: 'awesome-vuetify',
-        href: 'https://github.com/vuetifyjs/awesome-vuetify'
+        text: '昵称',
+        disabled: true,
+        href: 'breadcrumbs_link_2'
+      },
+      {
+        text: '评论:1000',
+        disabled: true,
+        href: 'breadcrumbs_link_2'
+      },
+      {
+        text: '4天前',
+        disabled: true,
+        href: 'breadcrumbs_link_2'
       }
     ],
-    importantLinks: [
-      {
-        text: 'Documentation',
-        href: 'https://vuetifyjs.com'
-      },
-      {
-        text: 'Chat',
-        href: 'https://community.vuetifyjs.com'
-      },
-      {
-        text: 'Made with Vuetify',
-        href: 'https://madewithvuejs.com/vuetify'
-      },
-      {
-        text: 'Twitter',
-        href: 'https://twitter.com/vuetifyjs'
-      },
-      {
-        text: 'Articles',
-        href: 'https://medium.com/vuetify'
+    downloadUrl: '',
+    // 提示下载隐藏显示
+    downloadDivShow: true,
+    // 窗口宽度
+    windowWidth: 0
+  }),
+  mounted () {
+    this.getWindowWidth();
+  },
+  methods: {
+    // 获取窗口宽度
+    getWindowWidth () {
+      const clientWidth = document.body.clientWidth;
+      if (clientWidth < 600) {
+        this.windowWidth = 1;
+      } else if (clientWidth < 960) {
+        this.windowWidth = 2;
+      } else if (clientWidth < 1264) {
+        this.windowWidth = 3;
+      } else if (clientWidth < 1904) {
+        this.windowWidth = 4;
+      } else {
+        this.windowWidth = 5;
       }
-    ],
-    whatsNext: [
-      {
-        text: 'Explore components',
-        href: 'https://vuetifyjs.com/components/api-explorer'
-      },
-      {
-        text: 'Select a layout',
-        href: 'https://vuetifyjs.com/getting-started/pre-made-layouts'
-      },
-      {
-        text: 'Frequently Asked Questions',
-        href: 'https://vuetifyjs.com/getting-started/frequently-asked-questions'
-      }
-    ]
-  })
+    }
+  }
 }
 </script>
+<style scoped>
+</style>
