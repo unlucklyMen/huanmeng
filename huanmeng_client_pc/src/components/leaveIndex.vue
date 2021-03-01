@@ -1,15 +1,5 @@
 <template>
   <v-container>
-    <v-app-bar app light >
-      <v-btn icon @click="callback">
-        <v-icon>mdi-less-than</v-icon>
-      </v-btn>
-      <div>留言详情</div>
-      <v-spacer></v-spacer>
-      <v-btn icon>
-        <v-icon>mdi-share-variant</v-icon>
-      </v-btn>
-    </v-app-bar>
     <v-row class="text-center">
       <v-col cols="12">
         <span class="text-h5">文章标题文章标题文章标题文章标题文章标题文章标题文章标题文章标题文章标题文章标题文章标题文章标题</span>

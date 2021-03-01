@@ -17,7 +17,7 @@
     ></v-text-field>
   </v-col>
   <v-spacer class="d-none d-md-flex"></v-spacer>
-  <v-btn text class="d-none d-md-flex">
+  <v-btn text class="d-none d-md-flex" to="/userSetting">
     <v-icon>mdi-account-cog</v-icon>
     设置
   </v-btn>
@@ -32,6 +32,16 @@
   <v-btn text class="d-none d-md-flex">
     <v-icon>mdi-export</v-icon>
     登出
+  </v-btn>
+  <v-btn text class="d-none d-md-flex" to="/login">
+    <v-icon>mdi-account</v-icon>
+    登录
+  </v-btn>
+  <v-btn text to="/userMessage">
+    <v-avatar color="#fff" size="30">
+      <v-img src="../../../static/logo.png"></v-img>
+    </v-avatar>
+    昵称
   </v-btn>
   </v-app-bar>
 </template>

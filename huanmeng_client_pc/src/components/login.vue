@@ -1,15 +1,8 @@
 <template>
   <v-container>
-    <v-app-bar app light >
-      <v-btn icon @click="callback">
-        <v-icon>mdi-less-than</v-icon>
-      </v-btn>
-      <div>登陆</div>
-      <v-spacer></v-spacer>
-    </v-app-bar>
     <v-col cols="12" class="justify-center">
       <v-col cols="12" class="d-flex justify-center align-self-center">
-        <v-avatar color="teal" size="60">
+        <v-avatar color="#fff" size="60">
           <v-img src="../../static/logo.png"></v-img>
         </v-avatar>
         <div class="text-h4" style="padding: 10px;">账号登陆</div>

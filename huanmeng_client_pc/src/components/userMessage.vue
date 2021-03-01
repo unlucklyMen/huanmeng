@@ -1,12 +1,5 @@
 <template>
   <v-container>
-    <v-app-bar app light >
-      <v-btn icon @click="callback">
-        <v-icon>mdi-less-than</v-icon>
-      </v-btn>
-      <div>用户信息</div>
-      <v-spacer></v-spacer>
-    </v-app-bar>
     <v-col cols="12" class="d-flex flex-row align-self-center">
       <v-avatar color="teal" size="62">
         <img src="https://sf3-ttcdn-tos.pstatp.com/img/pgc-image/03f6307ae99745119fa95747f9d9e525~300x300.image" alt="昵称">

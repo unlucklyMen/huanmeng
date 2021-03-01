@@ -15,15 +15,6 @@
               <v-tab>最新</v-tab>
               <v-tab>无人问津</v-tab>
             </v-tabs>
-            <v-banner class="d-flex d-md-none" single-line v-if="downloadDivShow" @click:icon="downloadDivShow = false" >
-              <v-icon slot="icon" size="20">mdi-close</v-icon>
-              下载客户端获得更好的体验
-              <template v-slot:actions>
-                <v-btn color="primary" text :href="downloadUrl">
-                  下载
-                </v-btn>
-              </template>
-            </v-banner>
           </v-col>
 
           <v-col app cols="12">
